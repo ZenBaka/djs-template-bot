@@ -3,12 +3,12 @@ const path = require('path');
 
 module.exports = (client) => {
   client.syncCommands = async () => {
-    const commandFolders = readdirSync(path.join('commands'));
+    const commandFolders = readdirSync(path.join('src', 'commands'));
 
     const { commands } = client;
 
     for (const folder of commandFolders) {
-      const commandFiles = readdirSync(path.join('commands', `${folder}`)).filter(file => file.endsWith('.js'));
+      const commandFiles = readdirSync(path.join('src', 'commands', `${folder}`)).filter(file => file.endsWith('.js'));
 
       for (const file of commandFiles) {
         const command = require(`../../commands/${folder}/${file}`);
